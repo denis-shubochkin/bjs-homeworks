@@ -3,7 +3,7 @@ let algebra = 5;
 let geography = 5;
 let physics = 5;
 
-let avgBall = (algebra + geography + physics);
+let avgBall = (algebra + geography + physics)/3;
 console.log(avgBall);
 
 // Задание 2
