@@ -69,23 +69,15 @@ let studentAvg = getAvgPerDiscipline(student);
  
   function getAverageScore(studentAvgC) {
       let sum = 0;
-      let countDiscl = 0;
-      for (let prop in studentAvgC) {
-        countDiscl++;
-        }
+      let countDiscl = Object.keys(studentAvgC).length;
     for (let prop in studentAvgC) {
-    sum += studentAvgC[prop];
+    sum += getAvgPerDiscipline(studentAvgC[prop]);
     }
     studentAvgC.average = sum/countDiscl;    
     return studentAvgC; 
   } 
 
-
-
-  let result = getAverageScore(studentAvg);
-  for (let prop in result) {
-      console.log(prop+': '+result[prop]);
-  }
+  console.log(getAverageScore(studentAvg));
 
   
 
