@@ -5,15 +5,7 @@ function sleep(milliseconds)
 }
 
   function compareArrays (arr1, arr2) {
-    if(arr1.length != arr2.length)
-      {
-        return false;
-      }
-    else   
-      {
-        return arr1.every((a,item)=> {
-        return a === arr2[item];})
-      }
+        return ((arr1.length === arr2.length) && arr1.every((a,item)=>  a === arr2[item]));
     }
 
     function sum(...args) {
@@ -29,30 +21,23 @@ function sleep(milliseconds)
   function memorize(fn, limit) 
   {
     let results = [];
-    return function() 
+    return function t(...args) 
     {
-        if (results.length===limit) 
-          {
-            results.shift();
-          }
+       
         function check_elem(elem) 
           {
-          if(compareArrays(elem.mass_sum,temp_obj.args) === true) 
-          return 1;
+          if(compareArrays(elem.mass_sum,mass_sum) === true) 
+          return elem;
           }
         let mass_sum = Array.from(arguments);
-        let temp_obj = 
-            {
-            args: mass_sum,
-            res: fn
-            }
+        let result = fn(...args);
         if(results.length>0) 
           {
             if(results.find(check_elem) == undefined)
                 {
                 results.push({
                 mass_sum,
-                fn
+                result 
                 })
                 }
           }
@@ -60,11 +45,16 @@ function sleep(milliseconds)
           {
               results.push({
               mass_sum,
-              fn
+              result 
               })
           }
+      
+      if (results.length>limit) 
+      {
+        results.shift();
+      }
       console.log(results);
-      return fn;
+      return result  ;
     }
   }
   
@@ -74,14 +64,18 @@ function sleep(milliseconds)
 
 
     const mSum = memorize(sum, 5);
-     mSum(3,4,6);
-      mSum(1, 2);
-      mSum(1, 2);
-      mSum(5, 5);
-      mSum(3, 4);
-       mSum(5, 6);
-       mSum(6, 6);
-       mSum(7, 7,9);
+    // console.log(mSum(3,4,6));
+    // console.log(mSum(1, 2));
+    // console.log(mSum(1, 2));
+    mSum(3,4);
+    mSum(1, 2);
+    mSum(1, 2);
+    mSum(2, 3);
+    mSum(4, 5);
+    mSum(4, 4);
+    mSum(4, 8);
+    mSum(4, 1);
+
     
   
   
