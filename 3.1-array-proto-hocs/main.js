@@ -10,7 +10,7 @@ function sleep(milliseconds)
 
     function sum(...args) {
       // Замедление на половину секунды.
-        sleep(500); // Можно использовать другое значение замедления.        
+        //sleep(500); // Можно использовать другое значение замедления.        
         return args.reduce((sum, arg) => {        
         return sum += +arg;
         }, 0);
@@ -53,28 +53,34 @@ function sleep(milliseconds)
       {
         results.shift();
       }
-      console.log(results);
+      //console.log(results);
       return result  ;
     }
   }
   
+function testCase (testFunction, timer) {
+  let testArray = [ [1,2,3], [1,2], [1,2,3], [1,2], [9,5,2,4] ];
+  console.time(timer);
+  for (let i=0;i<100;i++){
+    testArray.forEach((...testArray) => testFunction(...testArray));
+    if(i===99) console.timeEnd(timer);
+  }
+}
+const mSum = memorize(sum, 5);
+testCase(sum,'Проверка функции sum');
+//Проверка функции sum: 250500.79296875ms
+//Без задержки:
+//Проверка функции sum: 5.954833984375ms
 
-    
+testCase(mSum,'Проверка оптимизированной версии');
+//Проверка оптимизированной версии: 250499.48999023438ms
+//Без задержки:
+//Проверка оптимизированной версии: 7.989013671875ms
 
 
 
-    const mSum = memorize(sum, 5);
-    // console.log(mSum(3,4,6));
-    // console.log(mSum(1, 2));
-    // console.log(mSum(1, 2));
-    mSum(3,4);
-    mSum(1, 2);
-    mSum(1, 2);
-    mSum(2, 3);
-    mSum(4, 5);
-    mSum(4, 4);
-    mSum(4, 8);
-    mSum(4, 1);
+
+
 
     
   
