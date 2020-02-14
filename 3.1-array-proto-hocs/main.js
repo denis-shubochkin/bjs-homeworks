@@ -10,7 +10,7 @@ function sleep(milliseconds)
 
     function sum(...args) {
       // Замедление на половину секунды.
-        //sleep(500); // Можно использовать другое значение замедления.        
+      //  sleep(200); // Можно использовать другое значение замедления.        
         return args.reduce((sum, arg) => {        
         return sum += +arg;
         }, 0);
@@ -30,11 +30,12 @@ function sleep(milliseconds)
           return elem;
           }
         let mass_sum = Array.from(arguments);
-        let result = fn(...args);
+        let result = 0;
         if(results.length>0) 
           {
             if(results.find(check_elem) == undefined)
                 {
+                result = fn(...args);
                 results.push({
                 mass_sum,
                 result 
@@ -43,6 +44,7 @@ function sleep(milliseconds)
           }
         else 
           {
+              result = fn(...args);
               results.push({
               mass_sum,
               result 
@@ -68,14 +70,14 @@ function testCase (testFunction, timer) {
 }
 const mSum = memorize(sum, 5);
 testCase(sum,'Проверка функции sum');
-//Проверка функции sum: 250500.79296875ms
+//Проверка функции sum: 100500.2392578125ms
 //Без задержки:
-//Проверка функции sum: 5.954833984375ms
+//Проверка функции sum: 3.179931640625ms
 
 testCase(mSum,'Проверка оптимизированной версии');
-//Проверка оптимизированной версии: 250499.48999023438ms
+//Проверка оптимизированной версии: 1006.556884765625ms
 //Без задержки:
-//Проверка оптимизированной версии: 7.989013671875ms
+//Проверка оптимизированной версии: 2.642822265625ms
 
 
 
