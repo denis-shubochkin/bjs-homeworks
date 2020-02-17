@@ -31,24 +31,14 @@ function sleep(milliseconds)
           }
         let mass_sum = Array.from(arguments);
         let result = 0;
-        if(results.length>0) 
+        if(results.find(check_elem) == undefined) 
           {
-            if(results.find(check_elem) == undefined)
-                {
                 result = fn(...args);
                 results.push({
                 mass_sum,
                 result 
                 })
-                }
-          }
-        else 
-          {
-              result = fn(...args);
-              results.push({
-              mass_sum,
-              result 
-              })
+                
           }
       
       if (results.length>limit) 
